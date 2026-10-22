@@ -1,0 +1,19 @@
+# Python environments and cache
+.venv/
+__pycache__/
+*.py[cod]
+
+# Jupyter transient files
+.ipynb_checkpoints/
+
+# Dataset files are downloaded from the cited source
+# (keep data/.gitkeep to preserve folder structure)
+data/raw/
+
+# OS/editor extras
+.DS_Store
+Thumbs.db
+.vscode/
+
+# Credentials
+.env
