@@ -1,44 +1,82 @@
-# RoomSense 🧠
+# RoomSense
 
-**Room occupancy prediction with a small neural network built from scratch.**
+RoomSense is a small neural network that predicts office-room occupancy using temperature, humidity, light and CO2 readings.
 
-RoomSense investigates whether temperature, humidity, light and CO₂ readings can help identify whether an office room is occupied. The motivation is energy efficiency: predictions might help facilities staff identify rooms worth checking, but this project **does not** control appliances or measure electricity savings.
+This project was developed for FIT1061 Introduction to Artificial Intelligence at Monash University.
 
-## Current status
+Author: Mohamed Elsayed Ahmed
+Version: v1.0
 
-FIT1061 H2 project — **in development**. Predictions, scores and results have not been obtained yet.
+## Project Features
 
-## Planned approach
-
-- Python and NumPy, with a feedforward neural network and one hidden layer.
-- A P8-inspired weighted-sum classifier for comparison.
-- Learning-rate and unreliable-sensor experiments.
-- Accuracy, precision, recall, macro-F1 and confusion-matrix evaluation.
+- Neural network implemented from scratch using Python and NumPy
+- Four sensor inputs, six hidden neurons and one output
+- Weighted-sum baseline for comparison
+- Learning-rate experiment
+- Light sensor reliability experiment
+- Evaluation using accuracy, precision, occupied recall, macro-F1 and false negatives
 
 ## Dataset
 
-UCI [Occupancy Detection](https://archive.ics.uci.edu/dataset/357/occupancy-detection), Luis Candanedo (2016), CC BY 4.0. Download and extract `datatraining.txt`, `datatest.txt` and `datatest2.txt` into `data/raw/`.
+RoomSense uses the [UCI Occupancy Detection dataset](https://archive.ics.uci.edu/dataset/357/occupancy-detection).
 
-The `data/raw/` files are intentionally not committed. To reproduce this project, download them from the credited source.
+Download the dataset and place these files inside `data/raw/`:
 
-## Getting started
+- `datatraining.txt`
+- `datatest.txt`
+- `datatest2.txt`
 
-```powershell
-py -m venv .venv
-.\.venv\Scripts\python.exe -m pip install -r requirements.txt
-.\.venv\Scripts\python.exe -m notebook
+The dataset is not included in the GitHub repository.
+
+## How to Run
+
+Open Anaconda Prompt and navigate to the RoomSense project folder.
+
+Activate the Python environment:
+
+```bash
+conda activate roomsense
 ```
 
-Open `RoomSense_H2.ipynb` from Jupyter, or open it in VS Code with the Python/Jupyter extensions and select the `.venv` Python kernel.
+Install the project dependencies if needed:
 
-## Project layout
+```bash
+python -m pip install -r requirements.txt
+```
 
-- `RoomSense_H2.ipynb` — H2 project notebook, experiments, figures, and report
-- `data/` — local dataset location (`data/raw/` excluded from Git)
-- `figures/` — exported plots, when completed
-- `requirements.txt` — initial Python dependencies
-- `SETUP.md` — GitHub and development instructions
+Open the Jupyter Notebook:
 
-## Academic integrity and attribution
+```bash
+python -m notebook RoomSense_H2.ipynb
+```
 
-This repository is intended to stay private during the assessment. The original H2 notebook template is from FIT1061. AI assistance used in planning and learning should be declared accurately in the H2 notebook. All implementation and experimental claims must be checked by the student.
+Run the notebook cells from top to bottom.
+
+## Results
+
+The selected neural network used a learning rate of 0.5 and was trained for 300 epochs.
+
+On the official test datasets, the neural network achieved:
+
+| Metric | Test Set 1 | Test Set 2 |
+|---|---|---|
+| Accuracy | 0.9568 | 0.8799 |
+| Macro-F1 | 0.9544 | 0.8475 |
+| Occupied Recall | 0.9949 | 0.9971 |
+
+The neural network met the macro-F1 and occupied recall targets, but did not achieve the planned improvement over the weighted-sum baseline.
+
+## Limitations
+
+Performance decreases when light sensor readings become unreliable. The project was also evaluated using a limited dataset and does not include real-world building deployment or automatic energy control.
+
+## Project Files
+
+- `RoomSense_H2.ipynb` — Implementation, experiments, graphs and report
+- `figures/` — Generated visualisations
+- `requirements.txt` — Python dependencies
+- `SETUP.md` — Additional setup instructions
+
+## Dataset Reference
+
+Candanedo, L. M. (2016). *Occupancy Detection*. UCI Machine Learning Repository. https://doi.org/10.24432/C5X01N
